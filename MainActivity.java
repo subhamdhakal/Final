@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         Set<Integer> set=new LinkedHashSet<Integer>(mylist);
         Integer []data=new Integer[set.size()];
         set.toArray(data);
+        Arrays.sort(data, Collections.reverseOrder());
         addSong(data);
 
 
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             String id=mSongDatabase.push().getKey();
 
             
-            StoreData storeData=new StoreData(name,artist,genre,Arrays.toString(data));
+            StoreData storeData=new StoreData(name,genre,artist,Arrays.toString(data));
             Log.d(TAG, "addSong: after creating the store data object");
 
             mSongDatabase.child(id).setValue(storeData);
